@@ -107,3 +107,52 @@ Page({
   </view>
 </template>
 ```
+<br><br>
+
+
+# Movie => [实现电影APP应用]()
+项目的开始，是实现全局的tabBar导航，其中涉及到的新知识是小程序框架之[全局配置](https://developers.weixin.qq.com/miniprogram/dev/framework/config.html#%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE)，下面请看相关代码
+```js
+{
+  "pages": [
+    "pages/movie/movie",
+    "pages/index/index"
+  ],
+  "tabBar": {
+    "color": "#ddd",
+    "selectedColor": "#3cc51f",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "pages/assets/img/dy-1.png",
+        "selectedIconPath": "pages/assets/img/dy.png",
+        "text": "影院热映"
+      },
+      {
+        "pagePath": "pages/movie/movie",
+        "iconPath": "pages/assets/img/tj-1.png",
+        "selectedIconPath": "pages/assets/img/tj.png",
+        "text": "电影推荐"
+      },
+      {
+        "pagePath": "pages/movie/movie",
+        "iconPath": "pages/assets/img/search-1.png",
+        "selectedIconPath": "pages/assets/img/search.png",
+        "text": "查询电影"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#2B2B2B",
+    "navigationBarTitleText": "小木学堂电影APP",
+    "navigationBarTextStyle": "white"
+  }
+}
+```
+
+
+
+
+
+
