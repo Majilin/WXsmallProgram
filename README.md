@@ -121,6 +121,8 @@ Page({
   "tabBar": {
     "color": "#ddd",
     "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#2B2B2B",
     "list": [
       {
         "pagePath": "pages/index/index",
