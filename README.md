@@ -11,3 +11,80 @@
 在开发的过程中遇到了以下两个问题
 - 1、如何在wxss文件中调用本地图片资源？[答案](https://github.com/CruxF/WXsmallProgram/issues/1)
 - 2、wx.setstoragesync和wx.setstorage的区别是什么？[答案](https://github.com/CruxF/WXsmallProgram/issues/2)
+
+
+# Weather => 实现天气预报应用
+挺容易的一个项目，主要是调用第三方API，也就是结合百度地图，对此陌生的童鞋可以[先来这里](http://lbsyun.baidu.com/index.php?title=wxjsapi/guide/key)补充下知识，相信将开发指南好好动手敲一遍的童鞋都能看懂以下代码
+```js
+//引入 bmap-wx.js
+var bmap = require('../../libs/bmap-wx.js');
+var wxMarkerData = [];
+
+Page({
+  data: {
+    city: "",
+    today: {},
+    future: {}
+  },
+  // 页面初始化 options为页面跳转所带来的参数
+  onLoad: function (options) {  
+    this.loadCity();
+  },
+  loadCity: function (latitude, longitude) {
+    var page = this;
+    // 新建百度地图对象 
+    var BMap = new bmap.BMapWX({
+      ak: '你的ak码'
+    });
+    var fail = function (data) {
+      console.log(data)
+    };
+    var success = function (data) {
+      // 城市
+      wxMarkerData = data.wxMarkerData;      
+      var index = wxMarkerData[0].desc.indexOf('市')
+      var city = wxMarkerData[0].desc.slice(0, index+1)
+      page.setData({ city: city });
+      page.loadWeather()
+    }
+    // 发起regeocoding检索请求 
+    BMap.regeocoding({
+      fail: fail,
+      success: success
+    });
+  },
+  loadWeather: function () {
+    var page = this;
+    // 新建百度地图对象 
+    var BMap = new bmap.BMapWX({
+      ak: '你的ak码'
+    });
+    var fail = function (data) {
+      console.log(data)
+    };
+    var success = function (data) {
+      // 当天
+      var weatherData = data.currentWeather[0];
+      // 当天-未来三天
+      var futureWeather = data.originalData.results[0].weather_data;
+      var future = []
+      for (var i = 0; i < futureWeather.length;i++){
+        future.push({
+          date: futureWeather[i].date.slice(0, 2),
+          temperature: futureWeather[i].temperature.slice(0, 2) +'℃',
+          weather: futureWeather[i].weather,
+          wind: futureWeather[i].wind
+        })
+      }
+      page.setData({ today: weatherData, future: future })
+    }
+    // 发起weather请求 
+    BMap.weather({
+      fail: fail,
+      success: success
+    }); 
+  }
+})
+```
+
+
