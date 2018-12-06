@@ -685,6 +685,8 @@ Page({
 })
 ```
 
+当我们需要一个点击出现底部选择框的时候(如下图)，那么可以来这里进行查看：API之[交互wx.showActionSheet](https://developers.weixin.qq.com/miniprogram/dev/api/wx.showActionSheet.html)
+
 
 
 
