@@ -466,20 +466,224 @@ Page({
 以上就是我所做的一些总结，源码都在[这里](https://github.com/CruxF/WXsmallProgram/tree/master/FirstWxPro?1544067560085)，有疑问的可以加我慕课账号（Zz皓）私信聊。<br><br>
 
 
-# Debate => 辩论赛计时APP
+# Debate => [辩论赛计时APP]()
 项目的开始是之前有提到的tabBar知识，新知识就是在某个Page模块中，在wxss里面page元素代表的是整个界面内容区域，常用此来定义区域背景颜色
 ```css
 page {
   background-color: #369;
 }
 ```
+<br>
 
-项目走到设置这一块，就出现了以下新的知识点
+项目走到设置页面这一块，就出现了以下新的知识点
 - 框架之[页面配置](https://developers.weixin.qq.com/miniprogram/dev/framework/config.html#%E9%A1%B5%E9%9D%A2%E9%85%8D%E7%BD%AE)，也就是能够把全局的json配置中某些部分替代掉。
 - 组件之[switch](https://developers.weixin.qq.com/miniprogram/dev/component/switch.html)，也就是on/off的开关
 - 组件之[slider](https://developers.weixin.qq.com/miniprogram/dev/component/slider.html)，也就是拖动条
-- 组件之[radio](https://developers.weixin.qq.com/miniprogram/dev/component/radio.html)，也就是单选按钮
+- 组件之[radio](https://developers.weixin.qq.com/miniprogram/dev/component/radio.html)，也就是单选按钮<br>
 
+
+有意思的一个亮点，就是往一个对象中添加属性，下面请看代码
+```html
+<!--pages/config/config.wxml-->
+<view class='config'>
+  <!-- 立论阶段 -->
+  <view class='section-title'>
+    立论阶段
+    <switch id='config1' class='pull-right' checked='checked' bindchange='switchChange'></switch>
+  </view>
+  <view class='hr'></view>
+  <view>
+    <text class='text'>时间限制(秒)</text>
+    <slider id='config1' show-value min='10' max='200' block-size="12" bindchange='sliderChange'></slider>
+  </view>
+  <view>
+    <text class='text'>声音提醒</text>
+    <radio-group id='config1' class="voice" bindchange="radioChange">
+      <label>
+        <radio value='15' checked='checked'>提前15秒</radio>
+      </label>
+      <label>
+        <radio value='10'>提前10秒</radio>
+      </label>
+      <label>
+        <radio value='5'>提前5秒</radio>
+      </label>
+    </radio-group>
+  </view>
+
+  <!-- 驳立论阶段 -->
+  <view class='section-title'>
+    驳立论阶段
+    <switch id='config2' class='pull-right' checked='checked' bindchange='switchChange'></switch>
+  </view>
+  <view class='hr'></view>
+  <view>
+    <text class='text'>时间限制(秒)</text>
+    <slider id='config2' show-value min='10' max='200' block-size="12" bindchange='sliderChange'></slider>
+  </view>
+  <view>
+    <text class='text'>声音提醒</text>
+    <radio-group id='config2' class="voice" bindchange="radioChange">
+      <label>
+        <radio value='15' checked='checked'>提前15秒</radio>
+      </label>
+      <label>
+        <radio value='10'>提前10秒</radio>
+      </label>
+      <label>
+        <radio value='5'>提前5秒</radio>
+      </label>
+    </radio-group>
+  </view>
+
+  <!-- 质辩环节 -->
+  <view class='section-title'>
+    质辩环节
+    <switch id='config3' class='pull-right' checked='checked' bindchange='switchChange'></switch>
+  </view>
+  <view class='hr'></view>
+  <view>
+    <text class='text'>时间限制(秒)</text>
+    <slider id='config3' show-value min='10' max='200' block-size="12" bindchange='sliderChange'></slider>
+  </view>
+  <view>
+    <text class='text'>声音提醒</text>
+    <radio-group id='config3' class="voice" bindchange="radioChange">
+      <label>
+        <radio value='15' checked='checked'>提前15秒</radio>
+      </label>
+      <label>
+        <radio value='10'>提前10秒</radio>
+      </label>
+      <label>
+        <radio value='5'>提前5秒</radio>
+      </label>
+    </radio-group>
+  </view>
+
+  <!-- 自由辩论 -->
+  <view class='section-title'>
+    自由辩论
+    <switch id='config4' class='pull-right' checked='checked' bindchange='switchChange'></switch>
+  </view>
+  <view class='hr'></view>
+  <view>
+    <text class='text'>时间限制(秒)</text>
+    <slider id='config4' show-value min='10' max='200' block-size="12" bindchange='sliderChange'></slider>
+  </view>
+  <view>
+    <text class='text'>声音提醒</text>
+    <radio-group id='config4' class="voice" bindchange="radioChange">
+      <label>
+        <radio value='15' checked='checked'>提前15秒</radio>
+      </label>
+      <label>
+        <radio value='10'>提前10秒</radio>
+      </label>
+      <label>
+        <radio value='5'>提前5秒</radio>
+      </label>
+    </radio-group>
+  </view>
+
+  <!-- 总结陈词 -->
+  <view class='section-title'>
+    总结陈词
+    <switch id='config5' class='pull-right' checked='checked' bindchange='switchChange'></switch>
+  </view>
+  <view class='hr'></view>
+  <view>
+    <text class='text'>时间限制(秒)</text>
+    <slider id='config5' show-value min='10' max='200' block-size="12" bindchange='sliderChange'></slider>
+  </view>
+  <view>
+    <text class='text'>声音提醒</text>
+    <radio-group id='config5' class="voice" bindchange="radioChange">
+      <label>
+        <radio value='15' checked='checked'>提前15秒</radio>
+      </label>
+      <label>
+        <radio value='10'>提前10秒</radio>
+      </label>
+      <label>
+        <radio value='5'>提前5秒</radio>
+      </label>
+    </radio-group>
+  </view>
+</view>
+```
+具体的js代码
+```js
+// pages/config/config.js
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    configs: {}
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function() {
+
+  },
+  // 开关选择状态
+  switchChange: function(e) {
+    var id = e.target.id;
+    var configs = this.data.configs
+    var config = configs[id];
+    if (!config) {
+      config = new Object();
+      configs[id] = config
+    }
+    // 开关状态，e代表的是switch对象
+    config.state = e.detail.value
+    this.setData({
+      configs: configs
+    })
+  },
+  // 时间滑块状态
+  sliderChange: function(e) {
+    var id = e.target.id;
+    var configs = this.data.configs
+    var config = configs[id];
+    if (!config) {
+      config = new Object();
+      configs[id] = config
+    }
+    // 滑块值，e代表的是slider对象
+    config.time = e.detail.value
+    this.setData({
+      configs: configs
+    })
+  },
+  // 单选按钮状态
+  radioChange: function(e) {
+    var id = e.target.id;
+    var configs = this.data.configs
+    var config = configs[id];
+    if (!config) {
+      config = new Object();
+      configs[id] = config
+    }
+    // 选中值，e代表的是radio对象
+    config.voice = e.detail.value
+    this.setData({
+      configs: configs
+    })
+  },
+})
+```
 
 
 
