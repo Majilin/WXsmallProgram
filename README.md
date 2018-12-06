@@ -474,6 +474,12 @@ page {
 }
 ```
 
+项目走到设置这一块，就出现了以下新的知识点
+- 框架之[页面配置](https://developers.weixin.qq.com/miniprogram/dev/framework/config.html#%E9%A1%B5%E9%9D%A2%E9%85%8D%E7%BD%AE)，也就是能够把全局的json配置中某些部分替代掉。
+- 组件之[switch](https://developers.weixin.qq.com/miniprogram/dev/component/switch.html)，也就是on/off的开关
+- 组件之[slider](https://developers.weixin.qq.com/miniprogram/dev/component/slider.html)，也就是拖动条
+- 组件之[radio](https://developers.weixin.qq.com/miniprogram/dev/component/radio.html)，也就是单选按钮
+
 
 
 
