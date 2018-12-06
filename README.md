@@ -154,7 +154,7 @@ Page({
 ```
 
 接着涉及的新知识点不过是小程序里面的基础内容，比如
-- 组件之[swiper](https://developers.weixin.qq.com/miniprogram/dev/component/swiper.html），也就是轮播图组件
+- 组件之[swiper](https://developers.weixin.qq.com/miniprogram/dev/component/swiper.html)，也就是轮播图组件
 - API之[wx.showLoading](https://developers.weixin.qq.com/miniprogram/dev/api/wx.showLoading.html?search-key=loading)，也就是页面数据加载时出现的动画
 
 有两点比较重要的是模板的使用，之前有说到；另外一点就是wxss样式代码相互之间能够引用，这就能够让我少写十分多重复的代码，以及我们能够封装一个公共的方法，然后在多个地方进行调用，这些都能够在源码中看到，具体点的就不提了。由于豆瓣接口现在已经无法调用了，因此电影详情以及电影搜索这两个功能无法实现，豆瓣客服如下说：
