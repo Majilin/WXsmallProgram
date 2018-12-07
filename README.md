@@ -688,5 +688,8 @@ Page({
 当我们需要一个点击出现底部选择框的时候(如下图)，那么可以来这里进行查看：API之[交互wx.showActionSheet](https://developers.weixin.qq.com/miniprogram/dev/api/wx.showActionSheet.html)
 
 
+项目中设计很多关于逻辑上的问题，不知道怎么去形容，还是直接看[源码吧]()，其中包含了动画的实现以及音频的实现。<br><br>
+
+
 
 
