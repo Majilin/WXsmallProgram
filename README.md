@@ -691,5 +691,69 @@ Page({
 项目中设计很多关于逻辑上的问题，不知道怎么去形容，还是直接看[源码吧](https://github.com/CruxF/WXsmallProgram/tree/master/Debate?1544177927550)，其中包含了动画的实现以及音频的实现。<br><br>
 
 
+# WXsho => [小程序实现购物车功能](https://github.com/CruxF/WXsmallProgram/tree/master/WXshop?1545741297991)
+购物车的功能，基本上在每一个需要支付的小程序中都会涉及到，最近自己也恰好根据自己的想法以及参考网上的代码实现了一个小demo，效果请看下图<br>
+![](https://github.com/CruxF/WXsmallProgram/blob/master/WXshop/images/proimage.jpg?raw=true)<br><br>
+
+由于WXML和WXSS代码过于简单，而且也是有些抠脚，在此不做讲解，下面直接看具体的功能代码，首先看data中的初始数据
+```js
+data: {
+  isAllSelect: false,
+  totalMoney: 0,
+  carts: [{
+    imgSrc: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545749696672&di=31a25f2946bb876476efc397929f1d60&imgtype=0&src=http%3A%2F%2Fo4.xiaohongshu.com%2Fdiscovery%2Fw640%2F462ba43540b307990a8b4a2664b9ef20_640_640_92.jpg',
+    title: "[马应龙]红霉素软膏",
+    desc: '10g(1%)',
+    price: 200,
+    isSelect: false,
+    count: {
+      quantity: 2,
+      min: 1,
+      max: 20
+    }
+  }, {
+    imgSrc: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545749696672&di=d59a2ae0dad0151c93d252d6478d8007&imgtype=0&src=http%3A%2F%2Fpic.baike.soso.com%2Fp%2F20140120%2F20140120153321-150550151.jpg',
+    title: "[云南]白药牙膏",
+    desc: '10g(1%)',
+    price: 200,
+    isSelect: true,
+    count: {
+      quantity: 5,
+      min: 1,
+      max: 20
+    }
+  }]
+}
+```
+以上代码定义了是否全选的变量（isAllSelect）、商品总金额变量（totalMoney）以及商品列表（carts）。下面我们再来看看选中单个商品时触发的事件
+```js
+switchSelect: function(e) {
+  const index = e.currentTarget.dataset.index; // 获取data- 传进来的index
+  let carts = this.data.carts; // 获取购物车列表
+  let selectNum = 0; //统计选中商品
+  const isSelect = carts[index].isSelect; // 获取当前商品的选中状态
+  carts[index].isSelect = !isSelect; // 改变状态
+  for (let i = 0; i < carts.length; i++) {
+    if (carts[i].isSelect) {
+      selectNum++
+    }
+  }
+  if (selectNum == carts.length) {
+    this.setData({
+      isAllSelect: true
+    })
+  } else {
+    this.setData({
+      isAllSelect: false
+    })
+  }
+  this.setData({
+    carts: carts
+  })
+  // 计算总金额方法
+  this.getTotalPrice()
+}
+```
+以上代码的逻辑是这样的：从视图层接收到index值，通过该值将对应的carts数组对象中的isSelect属性取反，实现选中和未选中状态的切换。通过定义selectNum来计算选中商品的品种，如果选中所有的品种，那么全选按钮就处于激活状态。
 
 
