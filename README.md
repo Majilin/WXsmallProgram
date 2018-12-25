@@ -466,7 +466,7 @@ Page({
 以上就是我所做的一些总结，源码都在[这里](https://github.com/CruxF/WXsmallProgram/tree/master/FirstWxPro?1544067560085)，有疑问的可以加我慕课账号（Zz皓）私信聊。<br><br>
 
 
-# Debate => [辩论赛计时APP]()
+# Debate => [辩论赛计时APP](https://github.com/CruxF/WXsmallProgram/tree/master/Debate?1544177927550)
 项目的开始是之前有提到的tabBar知识，新知识就是在某个Page模块中，在wxss里面page元素代表的是整个界面内容区域，常用此来定义区域背景颜色
 ```css
 page {
@@ -686,6 +686,9 @@ Page({
 ```
 
 当我们需要一个点击出现底部选择框的时候(如下图)，那么可以来这里进行查看：API之[交互wx.showActionSheet](https://developers.weixin.qq.com/miniprogram/dev/api/wx.showActionSheet.html)
+![](https://github.com/CruxF/WXsmallProgram/blob/master/Debate/assets/img/showActionSheet.jpg)<br>
+
+项目中设计很多关于逻辑上的问题，不知道怎么去形容，还是直接看[源码吧](https://github.com/CruxF/WXsmallProgram/tree/master/Debate?1544177927550)，其中包含了动画的实现以及音频的实现。<br><br>
 
 
 
