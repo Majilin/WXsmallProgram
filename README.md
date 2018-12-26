@@ -754,6 +754,60 @@ switchSelect: function(e) {
   this.getTotalPrice()
 }
 ```
-以上代码的逻辑是这样的：从视图层接收到index值，通过该值将对应的carts数组对象中的isSelect属性取反，实现选中和未选中状态的切换。通过定义selectNum来计算选中商品的品种，如果选中所有的品种，那么全选按钮就处于激活状态。
+以上代码的逻辑是这样的：从视图层接收到index值，通过该值将对应的carts数组对象中的isSelect属性取反，实现选中和未选中状态的切换。通过定义selectNum来计算选中商品的品种，如果选中所有的品种，那么全选按钮就处于激活状态；如果没有选中所有的品种，则全选按钮处于未激活状态，最后重新调用计算总额的方法。<br>
 
+下面是计算总额的方法，很简单，首先判断该商品是否被选中，然后商品的数量与价格互乘即可
+```js
+getTotalPrice() {
+  let carts = this.data.carts; // 获取购物车列表
+  let total = 0;
+  for (let i = 0; i < carts.length; i++) { // 循环列表得到每个数据
+    if (carts[i].isSelect) { // 判断选中才会计算价格
+      total += carts[i].count.quantity * carts[i].price; // 所有价格加起来
+    }
+  }
+  this.setData({ // 最后赋值到data中渲染到页面
+    carts: carts,
+    totalMoney: total.toFixed(2)
+  });
+}
+```
 
+当然，商品的数量是动态的，我们通过一个方法接收视图层传递过来的index值以此来判断carts数组的下标；接收视图层传递过来的id值来判断是执行增加产品还是减少产品动作，此时对商品的减少动作得设置一个临界值，商品数量怎么说也不能为负值是吧，最后再重新计算商品总金额
+```js
+quantityChange(e) {
+  const index = e.currentTarget.dataset.index;
+  let carts = this.data.carts;
+  let quantity = carts[index].count.quantity;
+  if (e.target.id == 'sub') {
+    if (quantity == 0) return
+    quantity -= 1
+  } else if (e.target.id == 'add') {
+    quantity += 1
+  }
+  carts[index].count.quantity = quantity
+  this.setData({
+    carts: carts
+  })
+  this.getTotalPrice()
+}
+```
+
+最后一个方法是全选，思路也是挺简单的，给当前全选状态值取反，然后将该全选状态值赋给carts数组中所有对象里的isSelect值，以此达到一个联动的效果
+```js
+selectAll(e) {
+  let isAllSelect = this.data.isAllSelect; // 是否全选状态
+  isAllSelect = !isAllSelect;
+  let carts = this.data.carts;
+  for (let i = 0; i < carts.length; i++) {
+    carts[i].isSelect = isAllSelect; // 改变所有商品状态
+  }
+  this.setData({
+    isAllSelect: isAllSelect,
+    carts: carts
+  });
+  this.getTotalPrice(); // 重新获取总价
+}
+```
+
+以上便是所有核心代码的一些思路分析。<br><br>
