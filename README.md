@@ -691,7 +691,7 @@ Page({
 项目中设计很多关于逻辑上的问题，不知道怎么去形容，还是直接看[源码吧](https://github.com/CruxF/WXsmallProgram/tree/master/Debate?1544177927550)，其中包含了动画的实现以及音频的实现。<br><br>
 
 
-# WXsho => [小程序实现购物车功能](https://github.com/CruxF/WXsmallProgram/tree/master/WXshop?1545741297991)
+# WXshop => [小程序实现购物车功能](https://github.com/CruxF/WXsmallProgram/tree/master/WXshop?1545741297991)
 购物车的功能，基本上在每一个需要支付的小程序中都会涉及到，最近自己也恰好根据自己的想法以及参考网上的代码实现了一个小demo，效果请看下图<br>
 ![](https://github.com/CruxF/WXsmallProgram/blob/master/WXshop/images/proimage.jpg?raw=true)<br><br>
 
@@ -811,3 +811,8 @@ selectAll(e) {
 ```
 
 以上便是所有核心代码的一些思路分析。<br><br>
+
+
+## WXassess => [微信小程序实现星星评价功能](https://github.com/CruxF/WXsmallProgram/tree/master/WXassess?1545997291588)
+这个功能在日常的开发也是比较常见，结合项目需要以及网上的一些代码实现了一个评价小demo，效果请看下图
+
