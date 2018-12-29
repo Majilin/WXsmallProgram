@@ -815,4 +815,77 @@ selectAll(e) {
 
 # WXassess => [微信小程序实现星星评价功能](https://github.com/CruxF/WXsmallProgram/tree/master/WXassess?1545997291588)
 这个功能在日常的开发也是比较常见，结合项目需要以及网上的一些代码实现了一个评价小demo，效果请看下图
-![](https://github.com/CruxF/WXsmallProgram/blob/master/WXassess/images/showPro.jpg?raw=true)
+![](https://github.com/CruxF/WXsmallProgram/blob/master/WXassess/images/showPro.jpg?raw=true)<br>
+
+功能实现的思路：使用wx:for遍历循环N个区域，通过判断背景图数组中flag值来动态设置N个区域中背景图为哪一个
+```html
+<view class='star-wrap'>
+  <view 
+    class='star-item' 
+    wx:for="{{stars}}" 
+    wx:key="" 
+    style='background:url("{{item.flag==1?item.lightImg:item.blackImg}}") no-repeat top;background-size:100%;' 
+    data-index="{{index}}" 
+    bindtap='starClick'
+  >
+  </view>
+</view>
+```
+
+我们先来看看data中的数据，starDesc为初始评价文字，stars为背景图数组对象，assessLists为快捷评价文字
+```js
+data: {
+  starDesc: '非常满意，无可挑剔',
+  stars: [{
+    lightImg: '/images/star_light.png',
+    blackImg: '/images/star_black.png',
+    flag: 1,
+    message: '非常不满意，各方面都很差'
+  }, {
+    lightImg: '/images/star_light.png',
+    blackImg: '/images/star_black.png',
+    flag: 1,
+    message: '不满意，比较差'
+  }, {
+    lightImg: '/images/star_light.png',
+    blackImg: '/images/star_black.png',
+    flag: 1,
+    message: '一般，还要改善'
+  }, {
+    lightImg: '/images/star_light.png',
+    blackImg: '/images/star_black.png',
+    flag: 1,
+    message: '比较满意，仍要改善'
+  }, {
+    lightImg: '/images/star_light.png',
+    blackImg: '/images/star_black.png',
+    flag: 1,
+    message: '非常满意，无可挑剔'
+  }],
+  assessLists: ['意见很有帮助', '态度非常好', '非常敬业', '非常专业认真', '回复很及时', '耐心细致']
+}
+```
+
+接下来是点击星星事件，思路是这样的：首先把所有区域的背景图设置为非点亮状态，然后
+```js
+starClick: function(e) {
+  var that = this;
+  for (var i = 0; i < that.data.stars.length; i++) {
+    var allItem = 'stars[' + i + '].flag';
+    that.setData({
+      [allItem]: 2
+    })
+  }
+  var index = e.currentTarget.dataset.index;
+  for (var i = 0; i <= index; i++) {
+    var item = 'stars[' + i + '].flag';
+    that.setData({
+      [item]: 1
+    })
+  }
+  // 评价星星文字说明
+  this.setData({
+    starDesc: this.data.stars[index].message
+  })
+}
+```
