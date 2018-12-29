@@ -813,7 +813,7 @@ selectAll(e) {
 以上便是所有核心代码的一些思路分析。<br><br>
 
 
-# WXassess => [微信小程序实现星星评价功能](https://github.com/CruxF/WXsmallProgram/tree/master/WXassess?1545997291588)
+# WXassess => [小程序实现星星评价功能](https://github.com/CruxF/WXsmallProgram/tree/master/WXassess?1545997291588)
 这个功能在日常的开发也是比较常见，结合项目需要以及网上的一些代码实现了一个评价小demo，效果请看下图
 ![](https://github.com/CruxF/WXsmallProgram/blob/master/WXassess/images/showPro.jpg?raw=true)<br>
 
